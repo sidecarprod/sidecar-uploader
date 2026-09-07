@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Admin — {{ brand }}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="page">
+    <div class="brand-header">
+      <img class="brand-logo" src="{{ url_for('static', filename='logo.png') }}" alt="{{ brand }}">
+      <h1>Admin access</h1>
+    </div>
+    <div class="panel">
+      <form class="admin-form" action="{{ url_for('admin_home') }}" method="get">
+        <label for="token">Admin token</label>
+        <input type="password" id="token" name="token" required>
+        <button type="submit">Enter</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

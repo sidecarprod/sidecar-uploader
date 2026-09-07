@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Not found — {{ brand }}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="page">
+    <div class="brand-header">
+      <img class="brand-logo" src="{{ url_for('static', filename='logo.png') }}" alt="{{ brand }}">
+      <h1>Link not found</h1>
+      <p>This upload link doesn't exist or may have been removed. Please double-check the link you were given.</p>
+    </div>
+  </div>
+</body>
+</html>

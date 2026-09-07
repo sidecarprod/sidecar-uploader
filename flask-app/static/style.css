@@ -1,0 +1,157 @@
+:root {
+  --brand-bg: #0f1115;
+  --brand-panel: #171a21;
+  --brand-orange: #f15a24;
+  --brand-blue: #1ca9f5;
+  --brand-accent: var(--brand-blue);
+  --brand-cta: var(--brand-orange);
+  --brand-text: #e8eaf0;
+  --brand-muted: #9aa1ae;
+  --brand-success: #22c55e;
+  --brand-error: #ef4444;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--brand-bg);
+  color: var(--brand-text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 16px;
+}
+
+.page {
+  width: 100%;
+  max-width: 640px;
+}
+
+.brand-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.brand-header .brand-logo {
+  width: 72px;
+  height: 72px;
+  margin-bottom: 12px;
+}
+
+.brand-header h1 {
+  font-size: 26px;
+  margin: 0 0 8px;
+}
+
+.brand-header p {
+  color: var(--brand-muted);
+  font-size: 15px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.panel {
+  background: var(--brand-panel);
+  border-radius: 12px;
+  padding: 24px;
+  border: 1px solid #262a35;
+}
+
+.confirmation {
+  display: none;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.confirmation .check {
+  font-size: 40px;
+  color: var(--brand-success);
+  margin-bottom: 12px;
+}
+
+.confirmation p {
+  color: var(--brand-text);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.footer-note {
+  text-align: center;
+  color: var(--brand-muted);
+  font-size: 12px;
+  margin-top: 20px;
+}
+
+/* --- admin --- */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px 10px;
+  border-bottom: 1px solid #262a35;
+}
+
+th { color: var(--brand-muted); font-weight: 600; }
+
+form.admin-form label {
+  display: block;
+  margin: 14px 0 6px;
+  font-size: 13px;
+  color: var(--brand-muted);
+}
+
+form.admin-form input,
+form.admin-form textarea {
+  width: 100%;
+  padding: 9px 10px;
+  border-radius: 6px;
+  border: 1px solid #2c303a;
+  background: #10131a;
+  color: var(--brand-text);
+  font-size: 14px;
+}
+
+button, .btn {
+  background: var(--brand-cta);
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  margin-top: 16px;
+}
+
+button.danger { background: var(--brand-error); padding: 4px 10px; margin: 0; font-size: 12px; }
+
+a { color: var(--brand-blue); }
+
+code {
+  background: #10131a;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+/* --- Uppy dashboard accents --- */
+.uppy-StatusBar-actionBtn--upload,
+.uppy-StatusBar-actionBtn--upload:hover {
+  background-color: var(--brand-cta) !important;
+}
+
+.uppy-Dashboard-browse {
+  color: var(--brand-blue) !important;
+}
+
+.uppy-Dashboard-inner {
+  background-color: var(--brand-panel) !important;
+  border-color: #262a35 !important;
+}

@@ -1,0 +1,59 @@
+version: "3.8"
+
+services:
+  uploader-web:
+    image: ghcr.io/sidecarprod/sidecar-uploader:latest
+    container_name: uploader-web
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      - UPLOAD_ROOT=/data/uploads
+      - DB_PATH=/data/db/events.db
+      - TUSD_INTERNAL_URL=http://uploader-tusd:1080
+      - TUSD_STAGING_DIR=/data/tusd-staging
+      - BRAND_NAME=Sidecar Productions
+    volumes:
+      - ./db:/data/db
+      # NAS destination for finished uploads (folder-per-event lives under here)
+      - "/volume3/Large Drive/Downloads:/data/uploads"
+      # shared with tusd so we can move finished files out and clean up
+      - ./tusd-data:/data/tusd-staging
+    networks:
+      - uploader-net
+
+  uploader-tusd:
+    image: tusproject/tusd:latest
+    container_name: uploader-tusd
+    restart: unless-stopped
+    command: >
+      -hooks-http http://uploader-web:5000/hooks
+      -hooks-http-forward-headers Tus-Resumable,X-Event-Slug
+      -behind-proxy
+      -upload-dir /srv/tusd-data
+      -host 0.0.0.0
+      -port 1080
+    volumes:
+      - ./tusd-data:/srv/tusd-data
+    networks:
+      - uploader-net
+
+  uploader-nginx:
+    image: nginx:alpine
+    container_name: uploader-nginx
+    restart: unless-stopped
+    depends_on:
+      - uploader-web
+      - uploader-tusd
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    ports:
+      # Point your Cloudflare Tunnel (submit.sidecarprod.com) at this port.
+      # Bound to all interfaces (not just localhost) so the tunnel container
+      # can reach it via the NAS's LAN IP (10.10.0.10:8420).
+      - "8420:80"
+    networks:
+      - uploader-net
+
+networks:
+  uploader-net:
+    driver: bridge
