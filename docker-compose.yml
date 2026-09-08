@@ -1,5 +1,3 @@
-version: "3.8"
-
 services:
   uploader-web:
     image: ghcr.io/sidecarprod/sidecar-uploader:latest
