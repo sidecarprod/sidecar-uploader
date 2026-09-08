@@ -151,7 +151,11 @@ code {
   color: var(--brand-blue) !important;
 }
 
-.uppy-Dashboard-inner {
-  background-color: var(--brand-panel) !important;
-  border-color: #262a35 !important;
-}
+   .uppy-Dashboard-inner {
+     background-color: var(--brand-panel) !important;
+     border-color: #262a35 !important;
+   }
+
+   .uppy-Dashboard-dropFilesTitle {
+     color: var(--brand-text) !important;
+   }
